@@ -4,11 +4,15 @@ using UnityEngine;
 
 public class Bird : MonoBehaviour
 {
+
+	public float BirdWidth;
+	public float BirdHeight;
+
 	bool gameRunning;
 	bool flapping;
 	float flapTime = 0.15f;
 	float timer = 0;
-	float spriteHeight;
+	
 	void Start()
 	{
 		var sr = GetComponent<SpriteRenderer>();
@@ -18,7 +22,8 @@ public class Bird : MonoBehaviour
 			return;
 		}
 
-		spriteHeight = sr.sprite.bounds.size.y;
+		BirdHeight = sr.sprite.bounds.size.y;
+		BirdWidth = sr.sprite.bounds.size.x;
 	}
 
 	public void Flap()
@@ -62,7 +67,7 @@ public class Bird : MonoBehaviour
 	public void StartGame(Vector3 spawnPos)
 	{
 		gameRunning = true;
-		transform.position = spawnPos;
+		transform.position = new Vector3(spawnPos.x+BirdWidth,spawnPos.y,spawnPos.z);
 	}
 
 	public void GameOver()
@@ -72,6 +77,6 @@ public class Bird : MonoBehaviour
 
 	public float GetBirdBottomPosition()
 	{
-		return transform.position.y - spriteHeight;
+		return transform.position.y - BirdHeight;
 	}
 }

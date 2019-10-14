@@ -370,7 +370,7 @@ MonoBehaviour:
     type: 3}
   Button: {fileID: 1625336767}
   Text: {fileID: 1321564105}
-  birdSpawnXOffset: 0.3
+  BirdSpawnXOffset: 0.2
 --- !u!4 &889282889
 Transform:
   m_ObjectHideFlags: 0

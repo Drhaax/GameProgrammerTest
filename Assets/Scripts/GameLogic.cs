@@ -11,24 +11,26 @@ public class GameLogic : MonoBehaviour
 	public GameObject BirdPrefab;
 	public Button Button;
 	public TextMeshProUGUI Text;
-	public float birdSpawnXOffset;
+	public float BirdSpawnXOffset;
 
 	private int score;
 	private Bird bird;
 	private PipePool pipePool;
 	private bool gameRunning;
 	private float birdSpawnXPos;
+	
 	void Start()
 	{
-		if(BirdPrefab != null)
+		if(BirdPrefab == null)
 		{
-			var birdGO = Instantiate(BirdPrefab);
-			bird = birdGO.GetComponent<Bird>();
+			Debug.LogError("Bird prefab was null");
+			return;
 		}
-
+		var birdGO = Instantiate(BirdPrefab);
+		bird = birdGO.GetComponent<Bird>();
 		var camera = Camera.main;
 		var halfHeight = camera.orthographicSize;
-		birdSpawnXPos = -(camera.aspect * halfHeight) + birdSpawnXOffset;
+		birdSpawnXPos = -(camera.aspect * halfHeight) + BirdSpawnXOffset;
 
 		pipePool = new PipePool();
 		Button.onClick.AddListener(StartGame);
